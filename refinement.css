@@ -197,3 +197,18 @@ body.focus-on.light-theme .app-card{--accent:#729d3d;--surface:#fff;--surface-2:
 @media(max-width:920px){.hero{padding-top:74px;padding-bottom:90px;gap:28px}.hero h1{font-size:clamp(59px,8vw,80px)}.hero-panel{height:260px;padding:25px}.hero-big-record{margin-top:25px}.hero-big-record strong{font-size:92px}.desk-layout{grid-template-columns:1fr}.desk-sidebar{display:grid;grid-template-columns:1fr 1fr}.tip-strip{grid-column:span 2}}
 @media(max-width:650px){.container{width:calc(100% - 36px)}.site-header{height:68px}.brand{font-size:26px}.hero{padding-top:62px;padding-bottom:74px}.hero h1{font-size:clamp(57px,12vw,76px)}.hero-copy>p{font-size:13px}.hero-chips{gap:9px 17px;margin-top:22px}.hero-right{padding:31px 0 0}.hero-panel{height:236px;padding:25px 24px;border-radius:13px}.hero-big-record strong{font-size:88px}.hero-side-note{display:none}.workspace-heading{margin-bottom:23px}.workspace-heading h2{font-size:26px}.desk-sidebar{display:flex;flex-direction:column}.coach-card{padding:25px}.coach-icon{margin:24px 0 18px!important}.section-space{padding-top:103px}.section-display{font-size:clamp(33px,8.3vw,48px)}.section-heading-row{margin:19px 0 29px}.lesson-card{padding:19px 16px;min-height:183px}.lesson-card h3{font-size:17px}.stat-card{padding:19px}.stat-card strong{font-size:43px}.method-shell{padding:35px 26px;gap:20px}.method-lead .section-display{font-size:39px}.result-shell{padding:22px 18px}}
 @media(prefers-reduced-motion:reduce){.lesson-card:hover{transform:none}}
+/* Light-mode readability: muted does not mean low contrast. */
+body.light-theme .hero-copy>p,
+body.light-theme .hero-chips span,
+body.light-theme .workspace-heading p,
+body.light-theme .workspace-heading h2 span,
+body.light-theme .section-heading-row>p,
+body.light-theme .tip-strip,
+body.light-theme .hero-side-note{color:#5c6d61}
+body.light-theme .eyebrow,
+body.light-theme .small-category,
+body.light-theme .section-kicker,
+body.light-theme .section-kicker>span:first-child{color:#597360}
+body.light-theme .hero-chips svg{color:#5e8061}
+body.light-theme .workspace-meta{color:#63796a!important}
+body.light-theme .sources-line{color:#687969}
