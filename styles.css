@@ -20,3 +20,8 @@ body.light-theme{--bg:#f1f3ed;--surface:#fff;--surface-2:#f6f7f3;--surface-3:#e9
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.hero-panel{transform:none}}
 
 .data-tools{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:18px}.data-tools>span{font-size:9px;font-weight:800;letter-spacing:.8px;color:var(--faint)}.data-tools>div{display:flex;gap:10px}.data-tools button{font-size:10px;color:#9dae9b;background:transparent;border:1px solid var(--line);border-radius:7px;padding:9px 12px;font-weight:800}.data-tools button:hover{color:var(--accent);border-color:var(--accent)}@media(max-width:650px){.data-tools{align-items:flex-start;flex-direction:column}.data-tools>div{flex-wrap:wrap}}
+
+/* Keep the active typing row pinned to the top of the viewport.
+   Remaining rows stay visible as a preview; the previous one slides out. */
+.typing-words{padding-bottom:175px}
+@media (prefers-reduced-motion:reduce){.type-scroll{scroll-behavior:auto}}
