@@ -479,14 +479,14 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     if (reloadingForUpdate) return;
     reloadingForUpdate = true;
     try {
-      const key = 'ritm.updated.v3';
+      const key = 'ritm.updated.v4';
       if (sessionStorage.getItem(key) === 'yes') return;
       sessionStorage.setItem(key, 'yes');
     } catch { /* Private browsing may disable sessionStorage. */ }
     location.reload();
   });
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js?v=3', {updateViaCache:'none'})
+    navigator.serviceWorker.register('./sw.js?v=4', {updateViaCache:'none'})
       .then(registration => registration.update())
       .catch(() => {});
   }, {once:true});
