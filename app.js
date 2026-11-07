@@ -471,6 +471,23 @@ document.body.classList.toggle('light-theme',settings.theme==='light');
 $('#year').textContent=new Date().getFullYear();$('#daily-tip').textContent=TIPS[new Date().getDay()%TIPS.length];
 renderControls();buildKeyboard();renderLessons();renderProgress();resetSession();
 
+// Keep the offline version current without clearing any local typing history.
+// A versioned script URL bypasses stale service-worker script caches.
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}),{once:true});
+  let reloadingForUpdate = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (reloadingForUpdate) return;
+    reloadingForUpdate = true;
+    try {
+      const key = 'ritm.updated.v3';
+      if (sessionStorage.getItem(key) === 'yes') return;
+      sessionStorage.setItem(key, 'yes');
+    } catch { /* Private browsing may disable sessionStorage. */ }
+    location.reload();
+  });
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js?v=3', {updateViaCache:'none'})
+      .then(registration => registration.update())
+      .catch(() => {});
+  }, {once:true});
 }
