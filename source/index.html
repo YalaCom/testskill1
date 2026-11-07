@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0d0f0c" />
+  <meta name="description" content="КИНОТЕАТР — игровое Discord-сообщество без сценария. Arizona RP, Dota 2, CS2, Minecraft и просто свои люди в войсе." />
+  <meta property="og:title" content="КИНОТЕАТР — здесь не смотрят, здесь играют" />
+  <meta property="og:description" content="Разные игры. Один войс. Твоя тусовка." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>КИНОТЕАТР — игровое Discord-сообщество</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4.5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-arrow-diagonal" viewBox="0 0 24 24"><path d="M5.5 18.5 18.5 5.5m-11.5 0h11.5V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-discord" viewBox="0 0 24 24"><path fill="currentColor" d="M19.73 5.58A18.7 18.7 0 0 0 15.1 4.1l-.56 1.15a17.3 17.3 0 0 0-5.06 0L8.92 4.1a18.5 18.5 0 0 0-4.63 1.48C1.34 9.85.55 14.01.95 18.11a18.5 18.5 0 0 0 5.69 2.82l1.23-1.98a11.4 11.4 0 0 1-1.81-.88l.44-.35c3.49 1.63 7.71 1.63 11.15 0l.44.35c-.58.35-1.19.65-1.82.88l1.23 1.98a18.4 18.4 0 0 0 5.7-2.82c.47-4.75-.8-8.86-3.47-12.53ZM8.65 15.6c-1.08 0-1.96-.98-1.96-2.19 0-1.2.87-2.19 1.96-2.19 1.1 0 1.98 1 1.96 2.19 0 1.2-.87 2.19-1.96 2.19Zm6.7 0c-1.08 0-1.96-.98-1.96-2.19 0-1.2.87-2.19 1.96-2.19s1.97 1 1.96 2.19c0 1.2-.86 2.19-1.96 2.19Z"/></symbol>
+    <symbol id="icon-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="16" cy="8" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="8" cy="16" r="1.5" fill="currentColor"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 1.5 2.4 8.1 8.1 2.4-8.1 2.4-2.4 8.1-2.4-8.1L1.5 12l8.1-2.4L12 1.5Z" fill="currentColor"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="icon-headset" viewBox="0 0 24 24"><path d="M4 14V12a8 8 0 0 1 16 0v2M4 14v3a2 2 0 0 0 2 2h2v-7H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-2v-7h2a2 2 0 0 1 2 2Z" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-volume" viewBox="0 0 24 24"><path d="m4 9 4 0 5-4v14l-5-4H4Z M16 9c2 2 2 4 0 6m3-9c4 4 4 8 0 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <div class="announcement"><div class="container announcement-inner">
+    <span><span class="status-ping" aria-hidden="true"></span> СООБЩЕСТВО БЕЗ СЦЕНАРИЯ</span>
+    <span class="announcement-right">Здесь не смотрят. Здесь играют. <span aria-hidden="true">✳</span></span>
+  </div></div>
+
+  <header class="site-header" id="top">
+    <nav class="container nav" aria-label="Главная навигация">
+      <a href="#top" class="brand" aria-label="КИНОТЕАТР — наверх"><span class="brand-mark">К<span class="brand-mark-dot"></span></span><span class="brand-label">КИНОТЕАТР<span class="brand-sub">GAMING COMMUNITY // 001</span></span></a>
+      <div class="nav-links" id="nav-links"><a href="#games">Во что играем</a><a href="#club">Атмосфера</a><a href="#roulette">Рулетка</a><a href="#faq">Вопросы</a></div>
+      <button class="btn btn-nav discord-trigger" type="button"><svg class="icon" aria-hidden="true"><use href="#icon-discord"/></svg><span>В DISCORD</span><svg class="icon arrow-icon" aria-hidden="true"><use href="#icon-arrow-diagonal"/></svg></button>
+      <button class="mobile-toggle" id="mobile-toggle" type="button" aria-label="Открыть меню" aria-controls="nav-links" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#icon-menu"/></svg></button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div><div class="hero-noise" aria-hidden="true"></div>
+      <div class="hero-flare" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <div class="eyebrow hero-eyebrow"><span class="eyebrow-line"></span> DISCORD-СЕРВЕР ДЛЯ СВОИХ <span class="eyebrow-num">/ EST. NOW</span></div>
+          <h1 id="hero-title" class="hero-title"><span class="title-row title-row-one">КИНО<span class="title-asterisk">✳</span></span><span class="title-row title-row-two">ТЕАТР<span class="title-period">.</span></span></h1>
+          <div class="hero-caption"><span class="caption-cross" aria-hidden="true">✳</span><p><strong>Не кино. Не театр. Свои люди.</strong><br />Залетай в войс, находи тиммейтов и превращай обычный вечер в историю.</p></div>
+          <div class="hero-actions"><button class="btn btn-primary discord-trigger" type="button"><svg class="icon" aria-hidden="true"><use href="#icon-discord"/></svg> ЗАЛЕТЕТЬ В КОМЬЮНИТИ <span class="btn-icon-circle"><svg class="icon"><use href="#icon-arrow-diagonal"/></svg></span></button><a href="#games" class="btn btn-ghost">СМОТРЕТЬ, ВО ЧТО ИГРАЕМ <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
+        </div>
+        <div class="hero-art" aria-label="Декоративный пропуск в игровое сообщество">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="orbit-star orbit-star-one">✳</span><span class="orbit-star orbit-star-two">+</span>
+          <div class="ticket-shadow"></div>
+          <div class="ticket" id="hero-ticket">
+            <div class="ticket-top"><span>КИНОТЕАТР®</span><span>ACCESS PASS<br/>№ 0001</span></div>
+            <div class="ticket-visual"><div class="ticket-smile"><span class="ticket-eye eye-left"></span><span class="ticket-eye eye-right"></span><span class="ticket-mouth"></span></div><div class="ticket-circle ticket-circle-one"></div><div class="ticket-circle ticket-circle-two"></div></div>
+            <div class="ticket-bottom"><span>БИЛЕТ В ХАОС</span><span class="ticket-qr" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+            <div class="ticket-cut ticket-cut-left"></div><div class="ticket-cut ticket-cut-right"></div>
+          </div>
+          <div class="floating-sticker sticker-one">NO RULES<br/>JUST VIBES<span>↗</span></div>
+          <div class="floating-sticker sticker-two">PLAY<br/>ANYTHING<span>✳</span></div>
+          <span class="art-caption">FIG. 01 — ВХОДНОЙ БИЛЕТ НЕ НУЖЕН</span>
+        </div>
+      </div>
+      <div class="container hero-bottom"><span><span class="mini-spark">✳</span> ИГРАЕМ В РАЗНОЕ. ЗВУЧИМ КАК ОДНА КОМАНДА.</span><a href="#games" aria-label="Прокрутить к играм" class="scroll-cue"><span>ЛИСТАЙ НИЖЕ</span><span class="scroll-mouse">↓</span></a></div>
+    </section>
+
+    <div class="marquee-band" aria-label="Arizona RP, Dota 2, Counter-Strike 2, Minecraft, и другие игры"><div class="marquee-track" aria-hidden="true"><span>ARIZONA RP</span><b>✳</b><span>DOTA 2</span><b>✳</b><span>COUNTER-STRIKE 2</span><b>✳</b><span>MINECRAFT</span><b>✳</b><span>И НЕ ТОЛЬКО</span><b>✳</b><span>ARIZONA RP</span><b>✳</b><span>DOTA 2</span><b>✳</b><span>COUNTER-STRIKE 2</span><b>✳</b><span>MINECRAFT</span><b>✳</b><span>И НЕ ТОЛЬКО</span><b>✳</b></div></div>
+
+    <section class="games section-pad" id="games" aria-labelledby="games-title">
+      <div class="container">
+        <div class="section-overline reveal"><span class="section-index">01 / НАШ ПЛЕЙЛИСТ</span><span class="overline-rule"></span><span>ИГРЫ МЕНЯЮТСЯ. СВОИ ОСТАЮТСЯ.</span></div>
+        <div class="section-heading reveal"><div><p class="mini-label"><span class="lime-square"></span> ВЫБИРАЙ СВОЮ ВСЕЛЕННУЮ</p><h2 class="section-title" id="games-title">У КАЖДОГО<br/><span class="outlined-title">СВОЙ ЖАНР.</span></h2></div><p class="section-lede">От жёстких каток до чиллового выживания. Не важно, во что ты играешь — важно, с кем.</p></div>
+        <div class="game-grid">
+          <article class="game-card game-card-arizona reveal" data-game="arizona" tabindex="0" role="button" aria-label="Подробнее об Arizona RP"><img src="./assets/arizona.svg" alt="Авторская иллюстрация: город, пальмы и автомобиль на закате" loading="eager"/><span class="game-tint"></span><div class="game-top"><span class="game-number">01 / ROLEPLAY</span><span class="game-pill">ОТКРЫТЫЙ МИР</span></div><div class="game-bottom"><div><span class="game-kicker">Живём вторую жизнь</span><h3>ARIZONA <i>RP</i></h3><p>Истории, движ, угары и приключения.</p></div><span class="game-arrow"><svg class="icon"><use href="#icon-arrow-diagonal"/></svg></span></div></article>
+          <article class="game-card game-card-dota reveal" data-game="dota" tabindex="0" role="button" aria-label="Подробнее о Dota 2"><img src="./assets/dota.svg" alt="Авторская иллюстрация: фэнтезийный воин и огненные руны" loading="eager"/><span class="game-tint"></span><div class="game-top"><span class="game-number">02 / MOBA</span><span class="game-pill">КОМАНДНАЯ ИГРА</span></div><div class="game-bottom"><div><span class="game-kicker">Это точно последняя</span><h3>DOTA <i>2</i></h3><p>Пять минут до сна. Ещё три катки.</p></div><span class="game-arrow"><svg class="icon"><use href="#icon-arrow-diagonal"/></svg></span></div></article>
+          <article class="game-card game-card-cs reveal" data-game="cs2" tabindex="0" role="button" aria-label="Подробнее о CS2"><img src="./assets/cs2.svg" alt="Авторская иллюстрация: силуэт бойца в оранжевом свете" loading="eager"/><span class="game-tint"></span><div class="game-top"><span class="game-number">03 / FPS</span><span class="game-pill">5 НА 5</span></div><div class="game-bottom"><div><span class="game-kicker">Эйс или отмазки</span><h3>CS<i>2</i></h3><p>Клатчи, крики и «я его попал!»</p></div><span class="game-arrow"><svg class="icon"><use href="#icon-arrow-diagonal"/></svg></span></div></article>
+          <article class="game-card game-card-minecraft reveal" data-game="minecraft" tabindex="0" role="button" aria-label="Подробнее о Minecraft"><img src="./assets/minecraft.svg" alt="Авторская иллюстрация: блочный лес, горы и кубическое солнце" loading="eager"/><span class="game-tint"></span><div class="game-top"><span class="game-number">04 / SANDBOX</span><span class="game-pill">БЕЗ ГРАНИЦ</span></div><div class="game-bottom"><div><span class="game-kicker">От первого блока до легенды</span><h3>MINECRAFT</h3><p>Строим, копаем и случайно взрываем дом.</p></div><span class="game-arrow"><svg class="icon"><use href="#icon-arrow-diagonal"/></svg></span></div></article>
+        </div>
+        <p class="games-footnote reveal"><span aria-hidden="true">✳</span> Не нашёл любимую игру? Это не проблема. Игры добавляются, когда появляется компания.</p>
+      </div>
+    </section>
+
+    <section class="club section-pad" id="club" aria-labelledby="club-title"><div class="container"><div class="section-overline reveal"><span class="section-index">02 / ВНУТРИ КЛУБА</span><span class="overline-rule"></span><span>ЛУЧШАЯ ЧАСТЬ — ЛЮДИ</span></div><div class="section-heading reveal"><div><p class="mini-label"><span class="lime-square"></span> БОЛЬШЕ, ЧЕМ ПРОСТО СЕРВЕР</p><h2 id="club-title" class="section-title">НАШ ВАЙБ<br/><span class="outlined-title">НЕ СКАЧАТЬ.</span></h2></div><p class="section-lede">Тут можно залететь на одну игру и зависнуть до утра просто потому, что разговор зашёл.</p></div>
+      <div class="club-grid">
+        <div class="club-card club-chat reveal"><div class="club-card-top"><span>01 / ВОЙС — НАШ ВТОРОЙ ДОМ</span><svg class="icon"><use href="#icon-headset"/></svg></div><div class="mock-discord"><div class="mock-sidebar"><span class="sidebar-glyph">К</span><span class="sidebar-dot active"></span><span class="sidebar-dot"></span><span class="sidebar-dot"></span></div><div class="mock-window"><div class="mock-channel"><span>#</span> общий-движ <small>НЕОФИЦИАЛЬНЫЙ ПРИМЕР ЧАТА</small></div><div class="mock-msg"><div class="avatar avatar-a">?</div><div><div class="msg-top"><b>тот самый тиммейт</b><span>22:41</span></div><p>ну что, одну катку и спать?</p></div></div><div class="mock-msg"><div class="avatar avatar-b">!</div><div><div class="msg-top"><b>человек из войса</b><span>22:41</span></div><p>да-да, конечно 😭</p></div></div><div class="mock-msg"><div class="avatar avatar-c">★</div><div><div class="msg-top"><b>кто-то ещё</b><span>22:42</span></div><p>я уже зашёл, где вы</p></div></div><div class="mock-typing"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span><span>кто-то печатает...</span></div></div></div><div class="club-card-caption"><h3>Сначала «на полчаса».<br/><em>Потом 04:37.</em></h3><span class="corner-arrow">↗</span></div></div>
+        <div class="club-card club-chaos reveal"><div class="club-card-top"><span>02 / БЕЗ СКУЧНЫХ СЦЕНАРИЕВ</span><span>↗</span></div><div class="chaos-art" aria-hidden="true"><span>LOL</span><div class="chaos-face"><i></i><i></i><b></b></div><span>GG</span><span class="chaos-spark">✳</span></div><div class="club-card-caption"><h3>Мемы? Да.<br/><em>Драма? Только игровая.</em></h3></div></div>
+        <div class="club-card club-people reveal"><div class="club-card-top"><span>03 / ВОТ В ЧЁМ ФИШКА</span><span>✳</span></div><div class="club-big-number">1<span>+</span></div><p class="people-big-caption">главное правило:</p><h3>ОСТАВАЙСЯ<br/>СОБОЙ.</h3><p class="people-note">Без показухи. Без необходимости быть про-игроком. Просто приходи и общайся.</p></div>
+      </div>
+    </div></section>
+
+    <section class="roulette section-pad" id="roulette" aria-labelledby="roulette-title"><div class="container roulette-container"><div class="roulette-copy reveal"><div class="section-overline roulette-overline"><span class="section-index">03 / НЕ МОЖЕШЬ ВЫБРАТЬ?</span><span class="overline-rule"></span></div><p class="mini-label"><span class="lime-square"></span> ПУСТЬ РЕШИТ СУДЬБА</p><h2 id="roulette-title" class="section-title">ВО ЧТО<br/><span class="outlined-title">ИГРАЕМ?</span></h2><p class="roulette-lede">Когда все говорят «мне всё равно», нужен кто-то, кто решит за всех. Теперь это колесо.</p><button class="btn btn-dark" id="spin-button" type="button"><svg class="icon" aria-hidden="true"><use href="#icon-dice"/></svg> КРУТИТЬ РУЛЕТКУ <span class="btn-icon-circle"><svg class="icon"><use href="#icon-arrow"/></svg></span></button><div class="roulette-result" id="roulette-result" role="status" aria-live="polite"><span>РЕЗУЛЬТАТ / 000</span><strong>ЖМИ НА КНОПКУ <span>↗</span></strong><small>Рандом решит, куда залетать сегодня.</small></div></div><div class="roulette-visual reveal"><span class="wheel-decoration dec-one">✳</span><span class="wheel-decoration dec-two">+</span><span class="wheel-pointer" aria-hidden="true"></span><div class="wheel" id="game-wheel" aria-label="Рулетка из четырёх игр"><div class="wheel-content"><div class="wheel-label label-arizona"><span>01</span>ARIZONA<br/>RP</div><div class="wheel-label label-dota"><span>02</span>DOTA 2</div><div class="wheel-label label-cs"><span>03</span>CS2</div><div class="wheel-label label-minecraft"><span>04</span>MINECRAFT</div></div><div class="wheel-hub"><span>К</span></div></div><span class="wheel-orbit-text">THE CHOICE IS YOURS · OR MAYBE NOT ·</span></div></div></section>
+
+    <section class="manifesto" aria-label="Манифест сообщества"><div class="manifesto-track"><span>НЕ ИГРА ВАЖНА. <em>ЛЮДИ ВАЖНЫ.</em></span><span>НЕ ИГРА ВАЖНА. <em>ЛЮДИ ВАЖНЫ.</em></span></div></section>
+
+    <section class="faq section-pad" id="faq" aria-labelledby="faq-title"><div class="container"><div class="section-overline reveal"><span class="section-index">04 / ВСЁ ПРОСТО</span><span class="overline-rule"></span><span>FAQ / ЧТО НУЖНО ЗНАТЬ</span></div><div class="faq-layout"><div class="faq-intro reveal"><p class="mini-label"><span class="lime-square"></span> ЕЩЁ ВОПРОСЫ?</p><h2 id="faq-title" class="section-title">ЭТО<br/><span class="outlined-title">НОРМАЛЬНО.</span></h2><p>Без лишней бюрократии. Тут не собеседование в клан, а место, где хочется остаться.</p><div class="faq-sticker">?</div></div><div class="faq-list reveal"><details class="faq-item"><summary><span class="faq-num">01</span><span>А почему вы «КИНОТЕАТР»?</span><svg class="icon"><use href="#icon-plus"/></svg></summary><p>Потому что можем. Название живёт своей жизнью, а мы — своей. Кино не показываем, зато историй на неделю вперёд.</p></details><details class="faq-item"><summary><span class="faq-num">02</span><span>Нужно хорошо играть?</span><svg class="icon"><use href="#icon-plus"/></svg></summary><p>Нет. Главное — нормальное общение и желание быть частью компании. Скилл приятен, но не обязателен.</p></details><details class="faq-item"><summary><span class="faq-num">03</span><span>А если я играю не в эти четыре игры?</span><svg class="icon"><use href="#icon-plus"/></svg></summary><p>Приходи со своей! Мы не ограничиваемся списком на сайте — здесь собираются ради людей, а не конкретного лаунчера.</p></details><details class="faq-item"><summary><span class="faq-num">04</span><span>Как попасть на Discord-сервер?</span><svg class="icon"><use href="#icon-plus"/></svg></summary><p>Нажми кнопку «Залететь в комьюнити». Владельцу сайта нужно один раз добавить настоящую ссылку-приглашение в настройках сайта.</p></details></div></div></div></section>
+
+    <section class="final-cta" id="join" aria-labelledby="final-title"><div class="container final-inner"><div class="final-sparks" aria-hidden="true">✳ <span>✳</span> ✳</div><p class="final-label">ФИНАЛЬНАЯ СЦЕНА / ИЛИ ТОЛЬКО НАЧАЛО?</p><h2 id="final-title">ХВАТИТ<br/>СКРОЛЛИТЬ.<span>✳</span></h2><div class="final-bottom"><p>Твоя следующая любимая компания<br/>может быть в одном клике отсюда.</p><button class="btn btn-final discord-trigger" type="button"><svg class="icon" aria-hidden="true"><use href="#icon-discord"/></svg> ПОГНАЛИ В DISCORD <svg class="icon"><use href="#icon-arrow-diagonal"/></svg></button></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-top"><a href="#top" class="footer-logo">КИНОТЕАТР<span>®</span></a><div class="footer-right"><a href="#games">ИГРЫ</a><a href="#club">АТМОСФЕРА</a><a href="#roulette">РУЛЕТКА</a><button class="discord-trigger" type="button">DISCORD ↗</button></div></div><div class="container footer-bottom"><span>© <span id="year">2026</span> КИНОТЕАТР. MADE FOR THE GROUP CHAT.</span><span>НЕ СВЯЗАНО С КИНО. И НАМ НРАВИТСЯ.</span><a href="#top">НАВЕРХ ↑</a></div></footer>
+
+  <dialog class="site-modal" id="invite-modal" aria-labelledby="invite-title"><div class="modal-inner"><button class="modal-close" type="button" data-close-modal aria-label="Закрыть окно"><svg class="icon"><use href="#icon-close"/></svg></button><span class="modal-stamp">✳ / ВХОД В КЛУБ</span><div class="modal-icon"><svg class="icon"><use href="#icon-discord"/></svg></div><h2 id="invite-title">ЕЩЁ ОДИН<br/>ШАГ ДО ВОЙСА.</h2><p>Сайт уже готов. Осталось указать ссылку-приглашение на Discord-сервер в файле <code>main.js</code> — и все кнопки заработают.</p><div class="modal-code">const DISCORD_INVITE = <strong>""</strong>;</div><button type="button" class="btn btn-primary modal-confirm" data-close-modal>ПОНЯТНО <svg class="icon"><use href="#icon-arrow"/></svg></button></div></dialog>
+  <dialog class="site-modal game-modal" id="game-modal" aria-labelledby="game-modal-title"><div class="modal-inner"><button class="modal-close" type="button" data-close-modal aria-label="Закрыть окно"><svg class="icon"><use href="#icon-close"/></svg></button><span class="modal-stamp" id="game-modal-kicker">✳ / ИГРА</span><div class="game-modal-image"><img id="game-modal-image" src="./assets/arizona.svg" alt="Иллюстрация игры"/></div><h2 id="game-modal-title">ARIZONA RP</h2><p id="game-modal-description">Залетай с нами в игру.</p><button type="button" class="btn btn-primary game-join discord-trigger"><svg class="icon"><use href="#icon-discord"/></svg> ЗАЛЕТЕТЬ В КОМАНДУ <svg class="icon"><use href="#icon-arrow-diagonal"/></svg></button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" defer></script>
+  <script src="./main.js" defer></script>
+</body>
+</html>
