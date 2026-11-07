@@ -44,7 +44,7 @@ const TIPS = [
 ];
 const keyboardRows = { ru: ['йцукенгшщзхъ','фывапролджэ','ячсмитьбю.'], en: ['qwertyuiop','asdfghjkl;','zxcvbnm,./'] };
 const HOME = {ru:['а','о'],en:['f','j']};
-const settings = {mode:'time',lang:'ru',seconds:30,wordCount:25,quote:0,lesson:0,weakCount:25,punctuation:false,numbers:false,sound:false,theme:'dark'};
+const settings = {mode:'time',lang:'ru',seconds:30,wordCount:25,quote:0,lesson:0,weakCount:25,punctuation:false,numbers:false,sound:false,theme:'light'};
 let db = { history:[], completed:{ru:[],en:[]}, mistakes:{ru:{},en:{}}, settings:{} };
 try {
   const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
@@ -69,9 +69,55 @@ if (![25,50,100].includes(settings.weakCount)) settings.weakCount=25;
 settings.lesson=Math.max(0,Math.min(7,settings.lesson|0));
 settings.quote=Math.max(0,Math.min(3,settings.quote|0));
 function save(){ db.settings={...settings};try{localStorage.setItem(STORAGE_KEY,JSON.stringify(db));}catch{} }
+// Once-only design migration. Preserve history, progress and all other preferences.
+try {
+  if (localStorage.getItem('ritm.sage.v5') !== '1') {
+    settings.theme = 'light';
+    localStorage.setItem('ritm.sage.v5', '1');
+    save();
+  }
+} catch { settings.theme = 'light'; }
+
 const state={target:'',typed:'',charNodes:[],wordNodes:[],started:false,done:false,startTime:0,elapsed:0,keys:0,hits:0,errors:0,correctChars:0,weak:{},samples:[],lastSampleAt:0,lastSampleCorrect:0,timerId:0,focus:false,finishedRecord:null};
 const input=$('#typing-input'),surface=$('#type-surface'),wordsElement=$('#typing-words'),scrollElement=$('#type-scroll');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+// Soft, non-blocking ambient feedback for focus mode only.
+// No input data is sent outside the device; animations never affect timing/WPM.
+const feedbackLayers = {
+  success: $('#focus-feedback-success'),
+  error: $('#focus-feedback-error'),
+  urgency: $('#focus-urgency')
+};
+let lastGoodFlash = 0;
+function focusFlash(correct) {
+  if (!document.body.classList.contains('focus-on') || reducedMotion.matches) return;
+  const layer = correct ? feedbackLayers.success : feedbackLayers.error;
+  if (!layer) return;
+  const now = performance.now();
+  if (correct && now-lastGoodFlash < 105) return;
+  if (correct) lastGoodFlash = now;
+  layer.getAnimations().forEach(a => a.cancel());
+  layer.animate([{opacity:correct ? .16 : .32},{opacity:0}], {
+    duration:correct ? 470 : 690, easing:'cubic-bezier(.16,.9,.3,1)'
+  });
+}
+function setFocusPressure(elapsed = state.elapsed) {
+  if (!feedbackLayers.urgency) return;
+  const active = document.body.classList.contains('focus-on') &&
+    settings.mode === 'time' && state.started && !state.done;
+  const remain = active ? Math.max(0, settings.seconds - elapsed) : Infinity;
+  const windowSeconds = Math.min(12, settings.seconds * .5);
+  const intensity = remain <= windowSeconds ? Math.pow(1 - remain/windowSeconds, 1.5) * .72 : 0;
+  feedbackLayers.urgency.style.opacity = intensity.toFixed(3);
+  document.body.classList.toggle('focus-time-critical', active && remain <= 8);
+}
+function clearFocusFeedback() {
+  for (const layer of [feedbackLayers.success,feedbackLayers.error])
+    layer?.getAnimations().forEach(animation=>animation.cancel());
+  if(feedbackLayers.urgency) feedbackLayers.urgency.style.opacity='0';
+  document.body.classList.remove('focus-time-critical');
+}
+
 let activeLineTop = null;
 const successTarget=95;
 let toastTimeout=0, audioContext=null;
@@ -140,6 +186,7 @@ function resetSession(focus=false){
   $('#timer-label').textContent=settings.mode==='time'?'ОСТАЛОСЬ':'ПРОШЛО';
   $('#run-progress').style.width='0%';$('#run-state-label').textContent='ГОТОВ К СТАРТУ';
   $('#run-area').classList.remove('is-running');
+  clearFocusFeedback();
   activeLineTop = null;
   scrollElement.scrollTop = 0;
   syncActiveLine(false);
@@ -166,6 +213,7 @@ function updateClock(){if(!state.started||state.done)return;const elapsed=getEla
   if(settings.mode==='time'&&elapsed>=settings.seconds){finishSession(settings.seconds);return;}
   sampleAt(elapsed);
   updateLive(elapsed);
+  setFocusPressure(elapsed);
 }
 function updateLive(elapsed=getElapsed()){
   $('#live-wpm').textContent=state.started?getWpm(state.correctChars,Math.max(elapsed,.25)):'0';
@@ -245,6 +293,7 @@ function handleTextInput(){
       if(isCorrect)state.hits++;
       else {state.errors++;if(expected){const key=expected.toLowerCase();state.weak[key]=(state.weak[key]||0)+1;}}
       playTap(!isCorrect);
+      focusFlash(isCorrect);
     }
   }
   state.typed=next;
@@ -350,7 +399,7 @@ $('#option-buttons').addEventListener('click',event=>{const btn=event.target.clo
  save();renderControls();resetSession();});
 [['punctuation-toggle','punctuation'],['numbers-toggle','numbers']].forEach(([id,key])=>{$('#'+id).addEventListener('change',event=>{settings[key]=event.target.checked;save();resetSession();});});
 $('#sound-toggle').addEventListener('click',()=>{settings.sound=!settings.sound;save();renderControls();showToast(settings.sound?'Звуки клавиш включены':'Звуки клавиш выключены');});
-$('#focus-toggle').addEventListener('click',()=>{document.body.classList.toggle('focus-on');const yes=document.body.classList.contains('focus-on');$('#focus-toggle').setAttribute('aria-pressed',String(yes));input.focus({preventScroll:true});});
+$('#focus-toggle').addEventListener('click',()=>{document.body.classList.toggle('focus-on');const yes=document.body.classList.contains('focus-on');$('#focus-toggle').setAttribute('aria-pressed',String(yes));if(!yes)clearFocusFeedback();else setFocusPressure(getElapsed());input.focus({preventScroll:true});});
 $('#theme-toggle').addEventListener('click',()=>{settings.theme=settings.theme==='light'?'dark':'light';document.body.classList.toggle('light-theme',settings.theme==='light');save();});
 $('#restart-button').addEventListener('click',()=>resetSession(true));
 let armedTab=false;
@@ -395,6 +444,7 @@ function finishSession(durationOverride=null){
   let passed=false;
   if(settings.mode==='lesson'&&acc>=successTarget){passed=true;const arr=db.completed[settings.lang];if(!arr.includes(settings.lesson))arr.push(settings.lesson);}
   save();renderControls();renderLessons();renderProgress();renderResult(record,passed);
+  clearFocusFeedback();
   input.blur();input.disabled=true;$('#result-dialog').showModal();
 }
 function eligibleRecords(){return db.history.filter(r=>['time','words','quote'].includes(r.mode)&&r.duration>=5&&r.correct>=20&&Number.isFinite(r.wpm));}
@@ -479,14 +529,14 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     if (reloadingForUpdate) return;
     reloadingForUpdate = true;
     try {
-      const key = 'ritm.updated.v4';
+      const key = 'ritm.updated.v5';
       if (sessionStorage.getItem(key) === 'yes') return;
       sessionStorage.setItem(key, 'yes');
     } catch { /* Private browsing may disable sessionStorage. */ }
     location.reload();
   });
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js?v=4', {updateViaCache:'none'})
+    navigator.serviceWorker.register('./sw.js?v=5', {updateViaCache:'none'})
       .then(registration => registration.update())
       .catch(() => {});
   }, {once:true});

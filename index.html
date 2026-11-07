@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#111614" />
+  <meta name="theme-color" content="#f6f7f2" />
   <meta name="description" content="РИТМ — бесплатный тренажёр слепой печати. Уроки для новичков, тест скорости на русском и английском, анализ ошибок и статистика прогресса." />
   <meta property="og:title" content="РИТМ — печатай в своём ритме" />
   <meta property="og:description" content="Научись печатать быстрее. Без регистрации, рекламы и пустых обещаний." />
@@ -13,16 +13,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=4" />
-  <link rel="stylesheet" href="./refinement.css?v=4" />
-  <script src="./app.js?v=4" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=5" />
+  <link rel="stylesheet" href="./refinement.css?v=5" />
+  <link rel="stylesheet" href="./sage.css?v=5" />
+  <script src="./app.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#trainer">К тренажёру</a>
   <div class="ambient" aria-hidden="true"><span class="ambient-grid"></span><span class="ambient-light"></span></div>
+  <div class="focus-ambient" aria-hidden="true">
+    <div class="focus-ambient-base"></div>
+    <div class="focus-ambient-feedback success" id="focus-feedback-success"></div>
+    <div class="focus-ambient-feedback error" id="focus-feedback-error"></div>
+    <div class="focus-ambient-urgency" id="focus-urgency"></div>
+  </div>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="РИТМ, на главную"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>ритм<span class="brand-dot">.</span></span><small>TYPE BETTER</small></a>
+      <a class="brand" href="#top" aria-label="РИТМ, на главную"><img class="brand-logo" src="./logo.webp?v=5" alt="ритм." width="162" height="54" /><small>TYPE BETTER</small></a>
       <nav class="main-nav" aria-label="Навигация"><a class="nav-link active" href="#trainer">Тренажёр</a><a class="nav-link" href="#lessons">Уроки</a><a class="nav-link" href="#progress">Прогресс</a><a class="nav-link" href="#method">Метод</a></nav>
       <div class="header-actions"><div class="streak-tag" title="Дней с завершённой практикой подряд"><span class="streak-emoji" aria-hidden="true">✳</span><b id="header-streak">0</b><span>дней подряд</span></div><button type="button" class="icon-button theme-btn" id="theme-toggle" aria-label="Переключить тему" title="Тема"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.5 1.5m11.2 11.2 1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/></svg></button></div>
     </div>
@@ -62,7 +69,7 @@
 
     <section class="section-space container" id="method"><div class="section-kicker"><span>04 / МЕТОД</span><span class="section-kicker-line"></span><span>ПОЧЕМУ ЭТО РАБОТАЕТ</span></div><div class="method-shell"><div class="method-lead"><p class="small-category">Точность. Регулярность. Результат.</p><h2 class="section-display">Скорость — это<br><em>результат привычки.</em></h2><p>Мы не обещаем «100 WPM за три дня». Вместо этого помогаем сформировать навык и честно измеряем прогресс.</p><a href="#trainer" class="method-cta">Начать практику <span>↗</span></a></div><div class="method-steps"><article><span>01</span><div><h3>Точность прежде скорости</h3><p>Старайся держать точность выше 95%. Ошибки показываются сразу, а после теста ты увидишь слабые клавиши.</p></div></article><article><span>02</span><div><h3>Пальцы знают дорогу</h3><p>Начинай с домашнего ряда и старайся не смотреть на клавиатуру. Визуальная схема подскажет нужную клавишу.</p></div></article><article><span>03</span><div><h3>Коротко, но регулярно</h3><p>Повторяй уроки в удобном темпе и используй тесты как контрольные точки, а не гонку за рекордом.</p></div></article></div></div><div class="sources-line">Методика учитывает рекомендации <a href="https://www.typingclub.com/" target="_blank" rel="noopener noreferrer">TypingClub ↗</a> и исследования набора текста <a href="https://userinterfaces.aalto.fi/136Mkeystrokes/" target="_blank" rel="noopener noreferrer">Aalto University ↗</a>. Формула WPM: 5 символов = 1 условное слово.</div></section>
   </main>
-  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>ритм<span class="brand-dot">.</span></span></a><span>МАЛЕНЬКИЙ ШАГ КАЖДЫЙ ДЕНЬ · © <span id="year"></span></span><a href="#top">НАВЕРХ ↑</a></div></footer>
+  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><img class="brand-logo" src="./logo.webp?v=5" alt="ритм." width="162" height="54" /></a><span>МАЛЕНЬКИЙ ШАГ КАЖДЫЙ ДЕНЬ · © <span id="year"></span></span><a href="#top">НАВЕРХ ↑</a></div></footer>
 
   <dialog id="result-dialog" class="result-dialog"><div class="result-shell"><div class="result-top"><span><i class="done-dot"></i> ТЕСТ ЗАВЕРШЁН</span><button id="result-close" type="button" aria-label="Закрыть результаты">✕</button></div><div class="result-heading"><span id="result-subtitle">ОТЛИЧНАЯ РАБОТА</span><h2 id="result-title">Вот твой результат<span>.</span></h2><p id="result-feedback">Ты закончил тест. Теперь посмотрим на цифры.</p></div><div class="result-metrics"><div class="result-primary"><span>СКОРОСТЬ</span><div><strong id="result-wpm">0</strong><small>WPM</small></div></div><div class="result-metric"><span>ТОЧНОСТЬ</span><strong id="result-accuracy">0%</strong></div><div class="result-metric"><span>RAW WPM</span><strong id="result-raw">0</strong></div><div class="result-metric"><span>СТАБИЛЬНОСТЬ</span><strong id="result-consistency">—</strong></div></div><div class="result-chart-title"><span>СКОРОСТЬ ВО ВРЕМЯ ТЕСТА</span><span>WPM / СЕКУНДЫ</span></div><div class="result-graph" id="result-chart"></div><div class="result-summary"><div><span>ВРЕМЯ</span><strong id="result-duration">0 c</strong></div><div><span>НАЖАТИЙ</span><strong id="result-keystrokes">0</strong></div><div><span>ОШИБОК</span><strong id="result-errors">0</strong></div><div><span>СЛОЖНЫЕ КЛАВИШИ</span><strong id="result-weak">—</strong></div></div><div class="result-buttons"><button type="button" id="result-retry" class="primary-button">Ещё один тест ↗</button><button type="button" id="result-practice" class="secondary-button">Тренировать ошибки</button></div><p class="result-footnote">WPM = верно набранные символы ÷ 5 ÷ минуты. Точность учитывает ошибки, даже если ты их исправил.</p></div></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
