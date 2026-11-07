@@ -71,6 +71,8 @@ settings.quote=Math.max(0,Math.min(3,settings.quote|0));
 function save(){ db.settings={...settings};try{localStorage.setItem(STORAGE_KEY,JSON.stringify(db));}catch{} }
 const state={target:'',typed:'',charNodes:[],wordNodes:[],started:false,done:false,startTime:0,elapsed:0,keys:0,hits:0,errors:0,correctChars:0,weak:{},samples:[],lastSampleAt:0,lastSampleCorrect:0,timerId:0,focus:false,finishedRecord:null};
 const input=$('#typing-input'),surface=$('#type-surface'),wordsElement=$('#typing-words'),scrollElement=$('#type-scroll');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let activeLineTop = null;
 const successTarget=95;
 let toastTimeout=0, audioContext=null;
 function showToast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),2800);}
@@ -137,7 +139,10 @@ function resetSession(focus=false){
   $('#live-timer').textContent=settings.mode==='time'?settings.seconds:'0';
   $('#timer-label').textContent=settings.mode==='time'?'ОСТАЛОСЬ':'ПРОШЛО';
   $('#run-progress').style.width='0%';$('#run-state-label').textContent='ГОТОВ К СТАРТУ';
-  $('#run-area').classList.remove('is-running');scrollElement.scrollTop=0;
+  $('#run-area').classList.remove('is-running');
+  activeLineTop = null;
+  scrollElement.scrollTop = 0;
+  syncActiveLine(false);
   $('#focus-hint').style.opacity='';
   updateNextKey();refreshCoach();
   if(focus){input.focus({preventScroll:true});surface.scrollIntoView({block:'center',behavior:'smooth'});}
@@ -186,9 +191,43 @@ function refreshCaretAndLetters(prev){
   }
   if(state.charNodes[oldLen])state.charNodes[oldLen].classList.remove('current');
   if(state.charNodes[newLen])state.charNodes[newLen].classList.add('current');
-  const cur=state.charNodes[newLen];
-  if(cur){const a=cur.getBoundingClientRect(),b=scrollElement.getBoundingClientRect();if(a.top>b.bottom-60)scrollElement.scrollTop+=(a.top-b.top-36);else if(a.top<b.top+14)scrollElement.scrollTop-=(b.top-a.top+14);}
+  // The first word of the next rendered row takes over at the top immediately.
+  // Only scroll when the active *row* changes, not on every keystroke.
+  syncActiveLine(true);
 }
+
+function syncActiveLine(animate = true) {
+  const index = Math.min(state.typed.length, state.charNodes.length - 1);
+  const node = state.charNodes[index];
+  if (!node) return;
+  // A pending space belongs to the previous word: don't jump a row early.
+  const activeWord = node.closest('.type-word') ||
+    state.charNodes[Math.max(0, index - 1)]?.closest('.type-word');
+  if (!activeWord) return;
+  // The word is unbreakable. Its offset from the beginning of the text
+  // stays constant while the viewport scrolls, even through animation.
+  const top = Math.round(activeWord.getBoundingClientRect().top - wordsElement.getBoundingClientRect().top);
+  if (activeLineTop !== null && Math.abs(top - activeLineTop) < 2) return;
+  activeLineTop = top;
+  scrollElement.scrollTo({top: Math.max(0, top), behavior: animate && !reducedMotion.matches ? 'smooth' : 'instant'});
+}
+
+// Responsive reflow can change where the text wraps (mobile, zoom, resize).
+// Re-align the current row without advancing or changing test statistics.
+let lineResizeFrame = 0;
+window.addEventListener('resize', () => {
+  cancelAnimationFrame(lineResizeFrame);
+  lineResizeFrame = requestAnimationFrame(() => {
+    activeLineTop = null;
+    syncActiveLine(false);
+  });
+}, {passive:true});
+// Webfonts may finish loading after the initial layout and rewrap the words.
+// Preserve the current row if that happens in the middle of a session.
+document.fonts?.ready.then(() => {
+  activeLineTop = null;
+  syncActiveLine(false);
+});
 function handleTextInput(){
   if(state.done)return;
   let next=input.value.replace(/[\r\n]/g,' ');
