@@ -21,6 +21,7 @@ if (!/^\d{17,22}$/.test(GUILD_ID)) {
 let client = null;
 let lastWidget = null;
 let lastWidgetAt = 0;
+let lastWidgetRequestAt = 0;
 
 if (TOKEN) {
   client = new Client({
@@ -34,8 +35,9 @@ if (TOKEN) {
 }
 
 async function getWidget() {
-  if (Date.now() - lastWidgetAt < 25_000) return lastWidget;
-  lastWidgetAt = Date.now();
+  const now = Date.now();
+  if (now - lastWidgetRequestAt < 25_000) return now - lastWidgetAt < 90_000 ? lastWidget : null;
+  lastWidgetRequestAt = now;
   try {
     const response = await fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`, {
       headers: { 'User-Agent': 'KinoteatrLive/1.0 (community dashboard)' },
@@ -44,11 +46,12 @@ async function getWidget() {
     if (!response.ok) throw new Error(`Discord widget returned ${response.status}`);
     const data = await response.json();
     lastWidget = Number.isInteger(data.presence_count) ? data.presence_count : null;
+    lastWidgetAt = now;
   } catch (error) {
     console.warn('Widget unavailable:', error.message);
-    // On failure, retain last previously verified count for this process.
+    // Do not present stale widget numbers as live forever.
   }
-  return lastWidget;
+  return Date.now() - lastWidgetAt < 90_000 ? lastWidget : null;
 }
 
 const gameIds = ['arizona', 'dota', 'cs2', 'minecraft'];
