@@ -1,5 +1,5 @@
 /* Кэшируем только свои статические файлы. Личные результаты остаются в localStorage. */
-const VERSION = 'ritm-cache-v1';
+const VERSION = 'ritm-cache-v2';
 const STATIC = ['./','./index.html','./styles.css','./app.js','./favicon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(VERSION).then(cache=>cache.addAll(STATIC)).then(()=>self.skipWaiting()));
