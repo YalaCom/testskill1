@@ -210,6 +210,9 @@
       applyStats(apiUrl?json:{members:null,online:json.presence_count,playing:null,games:{},source:'widget'});
     } catch {
       setState('error','DISCORD НЕ ОТВЕЧАЕТ · ПРОБУЕМ ПОЗЖЕ');
+      for (const node of liveSection.querySelectorAll('[data-count],.live-game-value')) node.textContent='—';
+      for (const bar of liveSection.querySelectorAll('.live-bar > span')) bar.style.width='0%';
+      updated.textContent='НЕТ ДАННЫХ';
       label.textContent='Статистика временно недоступна. Сайт и другие функции работают.';
     }
   }
