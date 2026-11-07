@@ -1,0 +1,12 @@
+{
+  "name": "РИТМ — тренажёр скоростной печати",
+  "short_name": "РИТМ",
+  "description": "Печатай быстрее и точнее с уроками и статистикой.",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101316",
+  "theme_color": "#101316",
+  "icons": [{"src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+}
