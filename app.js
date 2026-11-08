@@ -97,8 +97,8 @@ function focusFlash(correct) {
   if (correct && now-lastGoodFlash < 105) return;
   if (correct) lastGoodFlash = now;
   layer.getAnimations().forEach(a => a.cancel());
-  layer.animate([{opacity:correct ? .16 : .32},{opacity:0}], {
-    duration:correct ? 470 : 690, easing:'cubic-bezier(.16,.9,.3,1)'
+  layer.animate([{opacity:correct ? .11 : .24},{opacity:0}], {
+    duration:correct ? 440 : 680, easing:'cubic-bezier(.16,.9,.3,1)'
   });
 }
 function setFocusPressure(elapsed = state.elapsed) {
